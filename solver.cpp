@@ -16,6 +16,7 @@ namespace solver {
     }
 
     RealVariable& operator+(double x, RealVariable &y) {
+        cout << "gere " <<x<<"+y" << endl;
         return y + x;
     }
 
@@ -34,19 +35,18 @@ namespace solver {
     }
 
     RealVariable& RealVariable::operator==(double x) {
-        x = pow(x, 1.0 / this->power);
-        x = x / this->coff;
-        x = x - this->sum;
-        this->value = x;
+        this->coff = this->coff*-1;
+        this->sum= (this->sum*-1)+x;
         return *this;
     }
     RealVariable& RealVariable::operator==(RealVariable& x) {
+        cout << "here x == x"<< endl;
+        this->coff = this->coff*-1;
+        this->sum= this->sum*-1;
         return *this;
     }
 
     RealVariable& RealVariable::operator+(RealVariable &x) {
-        this->sum = this->sum + x.sum;
-        this->coff = this->coff + x.coff;
         return *this;
     }
 
@@ -160,10 +160,29 @@ namespace solver {
         return *this;
 
     }
-
     double solve(RealVariable& x) {
-        return x.value;
+
+        try {
+            double temp = x.sum;
+            if (x.coff == 0) {
+                cout << "err" << endl;
+
+                return 0;
+            }
+            temp = temp / x.coff;
+            temp = pow(temp, 1.0 / x.power);
+            x.coff=1;
+            x.sum=0;
+            x.power=1;
+            return temp;
+        }
+
+        catch (const std::exception &e) {
+            cout << e.what() << endl;
+            return 0;
+        }
     }
+
 
     std::complex<double> solve(ComplexVariable& x) {
         return x.value;

@@ -11,9 +11,8 @@ namespace solver {
     class RealVariable {
     public:
         double coff = 1;
-        int power = 1;
+        double power = 1;
         double sum = 0;
-
         double value;
         RealVariable& operator==(double x);
 
@@ -44,7 +43,7 @@ namespace solver {
     class ComplexVariable {
     public:
         std::complex<double> coff = 1;
-        std::complex<int> power = 1;
+        std::complex<double> power = 1;
         std::complex<double> sum = 0;
 
         std::complex<double> value;
