@@ -40,6 +40,9 @@ namespace solver {
         this->value = x;
         return *this;
     }
+    RealVariable& RealVariable::operator==(RealVariable& x) {
+        return *this;
+    }
 
     RealVariable& RealVariable::operator+(RealVariable &x) {
         this->sum = this->sum + x.sum;
@@ -156,6 +159,14 @@ namespace solver {
     ComplexVariable &ComplexVariable::operator/(ComplexVariable &x){
         return *this;
 
+    }
+
+    double solve(RealVariable& x) {
+        return x.value;
+    }
+
+    std::complex<double> solve(ComplexVariable& x) {
+        return x.value;
     }
 
 };
