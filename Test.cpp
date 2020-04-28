@@ -11,6 +11,8 @@ using namespace std;
 using solver::solve, solver::RealVariable, solver::ComplexVariable;
 
 TEST_CASE("100 tests") {
+    RealVariable x;
+
     CHECK(solve(2*x-4 == 10)==7);
     CHECK(solve(x-4 == 8)==12);
     CHECK(solve(x-2 == 8)==10);
